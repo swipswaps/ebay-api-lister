@@ -1,0 +1,7 @@
+{
+  "name": "eBay Market Lens",
+  "description": "A full-stack analyzer for eBay listings featuring camera integration, sold listing analysis, and data visualizations.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
