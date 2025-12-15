@@ -6,6 +6,7 @@
     "dev": "concurrently \"npm run server\" \"vite\"",
     "server": "node backend/server.js",
     "build": "tsc && vite build",
+    "build:gh-pages": "GITHUB_PAGES=true npm run build",
     "preview": "vite preview"
   },
   "dependencies": {

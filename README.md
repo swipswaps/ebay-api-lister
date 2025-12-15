@@ -40,17 +40,45 @@ A powerful full-stack web application for analyzing eBay marketplace data with r
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Two Ways to Use This App
 
+#### Option 1: GitHub Pages (Recommended for Quick Access)
+
+**Live Demo**: Visit the app hosted on GitHub Pages at:
+`https://swipswaps.github.io/ebay-api-lister/`
+
+**Setup Steps**:
+1. Visit the GitHub Pages URL
+2. Click the "Backend" button in the header
+3. Follow the instructions to run the backend locally:
+   ```bash
+   git clone https://github.com/swipswaps/ebay-api-lister.git
+   cd ebay-api-lister
+   npm install
+   npm run server
+   ```
+4. The backend will run on `http://localhost:3001`
+5. Test the connection in the Backend Configuration panel
+6. Once connected, configure your eBay API credentials
+
+**Benefits**:
+- ✅ No need to build the frontend
+- ✅ Always up-to-date with latest version
+- ✅ Works from any device with internet access
+- ✅ Only need to run the backend locally
+
+#### Option 2: Full Local Development
+
+**Prerequisites**:
 - **Node.js** (v16 or higher)
 - **npm** or **yarn**
 - **eBay Developer Account** with API credentials
 
-### Installation
+**Installation**:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ebay-api-lister.git
+   git clone https://github.com/swipswaps/ebay-api-lister.git
    cd ebay-api-lister
    ```
 
@@ -215,10 +243,56 @@ vite
 npm run build
 ```
 
+### Build for GitHub Pages
+```bash
+npm run build:gh-pages
+```
+
 ### Preview Production Build
 ```bash
 npm run preview
 ```
+
+## 🌐 GitHub Pages Deployment
+
+This app is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+
+### Automatic Deployment
+
+The GitHub Actions workflow (`.github/workflows/deploy.yml`) automatically:
+1. Builds the frontend with GitHub Pages configuration
+2. Deploys to GitHub Pages
+3. Makes the app available at `https://yourusername.github.io/ebay-api-lister/`
+
+### Manual Deployment
+
+To manually trigger a deployment:
+1. Go to your repository on GitHub
+2. Click "Actions" tab
+3. Select "Deploy to GitHub Pages" workflow
+4. Click "Run workflow"
+
+### Enable GitHub Pages
+
+If this is your first deployment:
+1. Go to repository Settings
+2. Navigate to "Pages" section
+3. Under "Source", select "GitHub Actions"
+4. Save the settings
+
+### Using the Deployed App
+
+When using the GitHub Pages version:
+1. The frontend is hosted on GitHub Pages
+2. You run the backend locally on your computer
+3. Configure the backend URL in the app's "Backend" settings
+4. The app connects to your local backend via CORS
+
+**Why this architecture?**
+- ✅ Frontend is static and can be hosted for free
+- ✅ Backend handles sensitive eBay API credentials
+- ✅ No server costs - backend runs only when you need it
+- ✅ Your credentials never leave your local machine
 
 ## 📝 API Endpoints
 
@@ -233,8 +307,12 @@ npm run preview
 ## 🐛 Troubleshooting
 
 ### "Cannot connect to backend server"
-- Ensure backend is running on port 3001
-- Check that `npm run dev` started both servers
+- **Local Development**: Ensure backend is running on port 3001
+- **GitHub Pages**:
+  - Make sure you've started the backend with `npm run server`
+  - Check the backend URL in Backend Configuration panel
+  - Verify CORS is enabled (it is by default in this app)
+  - Test connection using the "Test Connection" button
 
 ### "Invalid credentials"
 - Verify your App ID and Cert ID from eBay Developer Portal
@@ -249,6 +327,22 @@ npm run preview
 - Try broader search terms
 - Check your filters aren't too restrictive
 - Verify you're searching the correct listing type (Active/Sold)
+
+### GitHub Pages Specific Issues
+
+**"Backend Configuration panel won't close"**
+- You must successfully test the connection before saving
+- Make sure backend is running on the URL you specified
+
+**"CORS errors in console"**
+- The backend has CORS enabled by default
+- If you modified the backend, ensure `cors()` middleware is active
+- Check that you're using the correct backend URL (including `/api` suffix)
+
+**"App shows blank page on GitHub Pages"**
+- Check browser console for errors
+- Verify the base path in `vite.config.ts` matches your repository name
+- Clear browser cache and reload
 
 ## 📄 License
 
