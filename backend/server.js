@@ -51,6 +51,33 @@ app.get('/api/config', (req, res) => {
   res.json({ configured });
 });
 
+// Get Config Details (masked credentials)
+app.get('/api/config/details', (req, res) => {
+  const config = getConfig();
+
+  if (!config.appId || !config.certId) {
+    return res.json({
+      configured: false,
+      appId: null,
+      certId: null,
+      env: null
+    });
+  }
+
+  // Mask credentials for security
+  const maskCredential = (credential) => {
+    if (!credential || credential.length < 8) return '****';
+    return credential.slice(0, 4) + '****' + credential.slice(-4);
+  };
+
+  res.json({
+    configured: true,
+    appId: maskCredential(config.appId),
+    certId: maskCredential(config.certId),
+    env: config.env
+  });
+});
+
 // Config Setup
 app.post('/api/config', async (req, res) => {
   let { appId, certId } = req.body;

@@ -33,6 +33,11 @@ export const saveConfig = async (appId: string, certId: string) => {
   return response.data;
 };
 
+export const getConfigDetails = async () => {
+  const response = await apiClient.get('/config/details');
+  return response.data;
+};
+
 export const searchEbay = async (
   params: SearchState, 
   filters: FilterState
